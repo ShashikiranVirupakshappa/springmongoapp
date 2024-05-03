@@ -5,6 +5,9 @@ server:
 spring:
   data:
     mongodb:
-      database: ProductsDB
-      host: localhost
+      authentication-database: admin
+      database: employeeDB
+      host: some-mongo
       port: 27017
+      username: root
+      password: mysecretpassword
