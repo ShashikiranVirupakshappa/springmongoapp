@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springmongoapp-deploy
+  namespace: default
+  labels:
+    app: springmongoapp-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springmongoapp-deploy
+  template:
+    metadata:
+      labels:
+        app: springmongoapp-deploy
+    spec:
+      containers:
+        -
+          image: shashi72174/springmongoapp2
+          imagePullPolicy: always
+          ports:
+            -
+              containerPort: 8090
+              name: springmongoapp-deploy
+          name: springmongoapp-deploy

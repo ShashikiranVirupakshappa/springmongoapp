@@ -1,0 +1,55 @@
+pipeline {
+
+  environment {
+    dockerImageName = "shashi72174/springmongoapp2:latest"
+	dockerImage = ""
+  }
+
+  agent any
+
+  stages {
+
+    stage('Checkout from SCM') {
+	  steps {
+	    git branch: 'main', credentialsId: 'GitCredentials', url: 'https://github.com/ShashikiranVirupakshappa/springmongoapp.git'
+	  }
+	}
+
+	stage('Maven Build') {
+	  steps {
+	    bat 'mvn clean install'
+	  }
+	}
+
+	stage('Docker Build') {
+	  steps {
+	    bat 'docker version'
+		bat 'docker build -t springmongoapp .'
+		bat 'docker images'
+		bat 'docker tag springmongoapp dockerImageName'
+	  }
+	}
+
+	stage('Docker Push') {
+	  environment {
+	    dockerRegistryCredentials = 'DockerLoginCredentials'
+	  }
+	  steps {
+	    script {
+		  docker.withRegistry('https://hub.docker.com', dockerRegistryCredentials) {
+	        bat 'docker push dockerImageName'
+		  }
+	    }
+	  }
+	}
+
+	stage('Deploy to K8S Cluster') {
+	  steps {
+	    script {
+          kubernetesDeploy(configs: "springmongoapp_deployment.yml", kubeconfigId: "K8SConfig")
+		  kubernetesDeploy(configs: "springmongoapp-service.yml", kubeconfigId: "K8SConfig")
+	    }
+	  }
+	}
+  }
+}
