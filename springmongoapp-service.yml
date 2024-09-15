@@ -13,7 +13,7 @@ spec:
       protocol: TCP
       nodePort: 30000
   selector:
-    app: springmongoapp-deploy
+    app: springmongodep
   type: NodePort
 
 
