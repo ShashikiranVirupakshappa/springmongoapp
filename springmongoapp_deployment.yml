@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         -
-          image: shashi72174/springmongoapp
+          image: shashi72174/springmongoapp:latest
           imagePullPolicy: Always
           ports:
             -
