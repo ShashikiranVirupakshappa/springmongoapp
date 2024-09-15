@@ -4,23 +4,23 @@ metadata:
   name: springmongoapp-deploy
   namespace: default
   labels:
-    app: springmongoapp-deploy
+    app: springmongoappdeploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: springmongoapp-deploy
+      app: springmongoappdeploy
   template:
     metadata:
       labels:
-        app: springmongoapp-deploy
+        app: springmongoappdeploy
     spec:
       containers:
         -
-          image: shashi72174/springmongoapp2
-          imagePullPolicy: always
+          image: shashi72174/springmongoapp
+          imagePullPolicy: Always
           ports:
             -
               containerPort: 8090
-              name: springmongoapp-deploy
-          name: springmongoapp-deploy
+              name: springmongoappdeploy
+          name: springmongoappdeploy
