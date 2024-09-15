@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: springmongoapp-deploy
+  name: springmongodep
   namespace: default
   labels:
-    app: springmongoappdeploy
+    app: springmongodep
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: springmongoappdeploy
+      app: springmongodep
   template:
     metadata:
       labels:
-        app: springmongoappdeploy
+        app: springmongodep
     spec:
       containers:
         -
@@ -22,5 +22,5 @@ spec:
           ports:
             -
               containerPort: 8090
-              name: springmongoappdeploy
-          name: springmongoappdeploy
+              name: springmongodep
+          name: springmongodep
