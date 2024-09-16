@@ -7,7 +7,7 @@ spring:
     mongodb:
       authentication-database: admin
       database: employeeDB
-      host: some-mongo
+      host: some-mongo-0
       port: 27017
       username: root
       password: mysecretpassword
